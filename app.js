@@ -132,6 +132,6 @@ app.get('/book/delete/:id', (req, res) => {
 
 
 //configure the server port
-app.listen(4000, () => {
-    console.log(`Server runs on port  ${4000}`)
+app.listen(process.env.PORT, () => {
+    console.log(`Server runs on port  ${process.env.PORT}`)
 })
