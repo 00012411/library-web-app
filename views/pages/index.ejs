@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Library</title>
+  <!-- <link rel="stylesheet" href="/style.css" /> -->
+
+  <style>
+    /** @format */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      list-style: none;
+    }
+
+    body {
+      background-color: #25b7c4;
+    }
+
+
+    .container {
+      max-width: 1408px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 16px
+    }
+
+    h1 {
+      font-size: 30px;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .main-table {
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .form {
+      max-width: 800px;
+      width: 100%;
+      margin: 32px auto;
+
+    }
+
+    .form-block {
+      display: flex;
+      flex-direction: column;
+      row-gap: 8px;
+      color: #fff;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+    .form input {
+      max-width: 320px;
+      width: 100%;
+      height: 24px;
+      padding: 0 8px;
+      border: 1px solid #fff;
+      border-radius: 3px;
+      background: transparent;
+      color: #fff;
+
+    }
+
+    input:focus {
+      outline: none;
+      border: 1px solid #4fc5e9;
+    }
+
+    .form input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .btn-create {
+      max-width: 320px;
+      width: 100%;
+      height: 32px;
+      border: none;
+      border-radius: 3px;
+      background: #fff;
+      color: #25b7c4;
+      font-weight: bold;
+      text-transform: uppercase;
+
+    }
+
+    table {
+      width: 100%;
+      margin: 0 auto;
+      table-layout: fixed;
+
+    }
+
+    .tbl-header {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .tbl-content {
+      height: 300px;
+      overflow-x: auto;
+      margin-top: 0px;
+    }
+
+    th {
+      padding: 20px 15px;
+      text-align: left;
+      font-weight: 500;
+      font-size: 12px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    td {
+      padding: 15px;
+      text-align: left;
+      vertical-align: middle;
+      font-weight: 300;
+      font-size: 14px;
+      color: #fff;
+      border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .th-actions {
+      display: flex;
+    }
+
+    .th-actions a {
+      text-decoration: none;
+      flex: 0 1 50%;
+      border: none;
+      border-radius: 3px;
+      background: #fff;
+      color: #25b7c4;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 4px;
+      margin: 2px;
+      font-size: 12px;
+    }
+
+    .btn-delete {
+      background: rgb(196, 24, 24) !important;
+      color: #fff !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <section class="container">
+      <h1>Library management panel</h1>
+
+
+      <form class="form" method="POST" action="/book/add">
+        <div class="form-block">
+          <label for="">Name</label>
+          <input type="text" placeholder="Piece and War" name="name">
+        </div>
+
+        <div class="form-block">
+          <label for="">Author</label>
+          <input type="text" placeholder="Lev Tolstoy" name="author">
+        </div>
+
+        <div class="form-block">
+          <label for="">Reviews</label>
+          <input type="text" placeholder="65" name="review">
+        </div>
+
+        <button class="btn-create" type="submit">Create</button>
+      </form>
+
+
+      <div class="main-table">
+        <div class="tbl-header">
+          <table cellpadding="0" cellspacing="0">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Reviews</th>
+                <th>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="tbl-content">
+          <table cellpadding="0" cellspacing="0">
+            <tbody>
+              <% books.forEach(function(book) { %>
+                <tr>
+                  <td>
+                    <%= book.id %>
+                  </td>
+                  <td>
+                    <%= book.name %>
+                  </td>
+                  <td>
+                    <%= book.author %>
+                  </td>
+                  <td>
+                    <%= book.review %>
+                  </td>
+                  <td>
+                    <div class="th-actions">
+                      <a href="/book/<%= book.id %>" class="btn-update">update</a>
+                      <a href="/book/delete/<%= book.id %>" class="btn-delete">delete</a>
+                    </div>
+                  </td>
+                </tr>
+
+                <% }); %>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</body>
+
+</html>
